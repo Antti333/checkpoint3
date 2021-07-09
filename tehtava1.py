@@ -1,7 +1,6 @@
 #REST datan hakeminen
 import requests
-def sortFunction(value):
-    return value["forks"]
+
 response = requests.get("https://2ri98gd9i4.execute-api.us-east-1.amazonaws.com/dev/academy-checkpoint2-json")
 dataframe = response.json()
 items_data = dataframe["items"]
@@ -28,14 +27,15 @@ storage_client = storage.Client()
 def upload_to_bucket(blob_name, path_to_file, bucket_name):
 
     bucket = storage_client.get_bucket(bucket_name)
-    blob = bucket.blob(blob_name)#    blob.upload_from_filename(path_to_file)
+    blob = bucket.blob(blob_name)
+    blob.upload_from_filename(path_to_file)
 
     #returns a public url
     return blob.public_url
 
 
 
-upload_to_bucket("checkpoint.txt", r"C:\Users\AnttiLecklin\VSCPython\Checkpoint3\vko3-1", "antti-super-bucket")
+upload_to_bucket("checkpoint.txt", r"C:\\Users\\AnttiLecklin\\VSCPython\\Checkpoint3\\vko3-1\\checkpoint.txt", "antti-super-bucket")
 
 
  
